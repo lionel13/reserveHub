@@ -1,0 +1,29 @@
+server:
+  port: 10111
+
+spring:
+  profiles:
+    active: native
+  application:
+    name: reserve-hub-config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show:
+        details: always
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+  file:
+    name: logs/${spring.application.name}.log

@@ -1,0 +1,28 @@
+services:
+
+  reserve-hub-config-server:
+    container_name: reserve-hub-config-server
+    build:
+      context: ./services/reserve-hub-config-server
+    hostname: reserve-hub-config-server
+    image: reserve-hub-config-server:latest
+    restart: always
+    ports:
+      - "10110:10110"
+    volumes:
+      - logs:/app/logs
+    networks:
+      - reserveHub-net
+    healthcheck:
+      test: "curl --fail --silent localhost:10110/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+volumes:
+  logs:
+
+networks:
+  reserveHub-net:  
+    driver: bridge
