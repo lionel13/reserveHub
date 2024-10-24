@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: reserve-hub-discovery-server
+  config:
+    import: optional:configserver:http://reserve-hub-config-server:10110

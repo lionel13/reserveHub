@@ -1,0 +1,27 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+server:
+  port: 10121
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show:
+        details: always
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+  file:
+    name: logs/${spring.application.name}.log
